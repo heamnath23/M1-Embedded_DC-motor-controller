@@ -55,15 +55,5 @@ https://user-images.githubusercontent.com/94506952/144386281-9173f1b9-07aa-4d1f-
 | L_02  |View the rotation of the motor | PASSED       |SUCESS      | Scenario     |
 | L_03  |motor runs at industrial condition | PASSED       |SUCCESS     | Boundary     |
 
-#ifndef F_CPU
-#define F_CPU 4000000UL
-#endif
-
-#include <avr/io.h>    
-#include <util/delay.h>  
-
-#define en12  (1<<PD2)
-#define a1 (1<<PD4)
-#define a2 (1<<PD5)
  
 
