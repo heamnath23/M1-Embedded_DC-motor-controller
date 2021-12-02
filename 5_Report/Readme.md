@@ -41,6 +41,20 @@ The DC motor controller is controlled by Atmega328  microcontroller. The designe
 
 https://user-images.githubusercontent.com/94506952/144386281-9173f1b9-07aa-4d1f-925c-02bef5a01654.mp4
 
+## High Level Test plan
+| ID    | Description                             | Expected O/P | Actual O/P | Type of Test |
+|-------|-----------------------------------------| ------------ | ---------- | ------------ |
+| H_01  |DC motor runs                |PASSED        |SUCCESS     | Requirement  |
+| H_01  |Speed of the Motor                  |PASSED        |SUCCESS     | Scenario     |
+| H_03  | control the speed           |PASSED        |SUCCESS     | Boundary     |
+
+## Low Level Test Plan
+| ID    | Description           | Expected O/P | Actual O/P | Type of Test | 
+|-------|-----------------------| ------------ | -----------| ------------ |
+| L_01  |DC motor speed variation     | PASSED       |SUCESS      | Requirement  |
+| L_02  |View the rotation of the motor | PASSED       |SUCESS      | Scenario     |
+| L_03  |motor runs at industrial condition | PASSED       |SUCCESS     | Boundary     |
+
 #ifndef F_CPU
 #define F_CPU 4000000UL
 #endif
@@ -52,25 +66,4 @@ https://user-images.githubusercontent.com/94506952/144386281-9173f1b9-07aa-4d1f-
 #define a1 (1<<PD4)
 #define a2 (1<<PD5)
  
-int main(void){
-    DDRD |= en12 | a1 | a2;
-    PORTD |= en12;
 
-    while(1){
-        //clockwise rotation
-        PORTD &= ~a1;
-        PORTD |= a2;
-
-        //stop motor
-        PORTD &= ~a1 | ~a2;    
-        _delay_ms(3000);    //3 sec delay
-        
-        //anti-clockwise rotation
-        PORTD |= a1;
-        PORTD &= ~a2;
-        
-        PORTD &= ~a1 | ~a2;    //stop motor
-        _delay_ms(3000);
-    }
-return(0);
-} 
